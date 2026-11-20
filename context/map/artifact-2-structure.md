@@ -254,4 +254,4 @@ node dot-to-mermaid.mjs package/classes.dot --extra system
 
 **Pozostałości do usunięcia:**
 - `context/map/jdeps/`: pierwsza wersja grafów, zastąpiona przez `evidence/jdeps/`,
-- `C:\Users\U139130\.jdks\_dl`: zip JDK.
+- `~/.jdks/_dl`: zip JDK.
