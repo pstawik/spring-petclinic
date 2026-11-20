@@ -1,0 +1,11 @@
+digraph "summary" {
+  "org.springframework.samples.petclinic"            -> "org.springframework.samples.petclinic.owner (classes)";
+  "org.springframework.samples.petclinic"            -> "org.springframework.samples.petclinic.vet (classes)";
+  "org.springframework.samples.petclinic.service"    -> "org.springframework.samples.petclinic.model (classes)";
+  "org.springframework.samples.petclinic.service"    -> "org.springframework.samples.petclinic.owner (classes)";
+  "org.springframework.samples.petclinic.service"    -> "org.springframework.samples.petclinic.vet (classes)";
+  "org.springframework.samples.petclinic"            -> "org.springframework.samples.petclinic.model (classes)";
+  "org.springframework.samples.petclinic"            -> "org.springframework.samples.petclinic.vet (classes)";
+  "org.springframework.samples.petclinic.owner"      -> "org.springframework.samples.petclinic.model (classes)";
+  "org.springframework.samples.petclinic.vet"        -> "org.springframework.samples.petclinic.model (classes)";
+}

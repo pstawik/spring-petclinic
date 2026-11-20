@@ -1,0 +1,43 @@
+digraph "classes" {
+    // Path: target\classes
+   "org.springframework.samples.petclinic.PetClinicRuntimeHints" -> "org.springframework.samples.petclinic.model.BaseEntity (classes)";
+   "org.springframework.samples.petclinic.PetClinicRuntimeHints" -> "org.springframework.samples.petclinic.model.Person (classes)";
+   "org.springframework.samples.petclinic.PetClinicRuntimeHints" -> "org.springframework.samples.petclinic.vet.Vet (classes)";
+   "org.springframework.samples.petclinic.model.NamedEntity" -> "org.springframework.samples.petclinic.model.BaseEntity (classes)";
+   "org.springframework.samples.petclinic.model.Person" -> "org.springframework.samples.petclinic.model.BaseEntity (classes)";
+   "org.springframework.samples.petclinic.owner.Owner" -> "org.springframework.samples.petclinic.model.Person (classes)";
+   "org.springframework.samples.petclinic.owner.Owner" -> "org.springframework.samples.petclinic.owner.Pet (classes)";
+   "org.springframework.samples.petclinic.owner.Owner" -> "org.springframework.samples.petclinic.owner.Visit (classes)";
+   "org.springframework.samples.petclinic.owner.OwnerController" -> "org.springframework.samples.petclinic.owner.Owner (classes)";
+   "org.springframework.samples.petclinic.owner.OwnerController" -> "org.springframework.samples.petclinic.owner.OwnerRepository (classes)";
+   "org.springframework.samples.petclinic.owner.OwnerRepository" -> "org.springframework.samples.petclinic.owner.Owner (classes)";
+   "org.springframework.samples.petclinic.owner.Pet"  -> "org.springframework.samples.petclinic.model.NamedEntity (classes)";
+   "org.springframework.samples.petclinic.owner.Pet"  -> "org.springframework.samples.petclinic.owner.PetType (classes)";
+   "org.springframework.samples.petclinic.owner.Pet"  -> "org.springframework.samples.petclinic.owner.Visit (classes)";
+   "org.springframework.samples.petclinic.owner.PetController" -> "org.springframework.samples.petclinic.owner.Owner (classes)";
+   "org.springframework.samples.petclinic.owner.PetController" -> "org.springframework.samples.petclinic.owner.OwnerRepository (classes)";
+   "org.springframework.samples.petclinic.owner.PetController" -> "org.springframework.samples.petclinic.owner.Pet (classes)";
+   "org.springframework.samples.petclinic.owner.PetController" -> "org.springframework.samples.petclinic.owner.PetType (classes)";
+   "org.springframework.samples.petclinic.owner.PetController" -> "org.springframework.samples.petclinic.owner.PetTypeRepository (classes)";
+   "org.springframework.samples.petclinic.owner.PetController" -> "org.springframework.samples.petclinic.owner.PetValidator (classes)";
+   "org.springframework.samples.petclinic.owner.PetType" -> "org.springframework.samples.petclinic.model.NamedEntity (classes)";
+   "org.springframework.samples.petclinic.owner.PetTypeFormatter" -> "org.springframework.samples.petclinic.owner.PetType (classes)";
+   "org.springframework.samples.petclinic.owner.PetTypeFormatter" -> "org.springframework.samples.petclinic.owner.PetTypeRepository (classes)";
+   "org.springframework.samples.petclinic.owner.PetTypeRepository" -> "org.springframework.samples.petclinic.owner.PetType (classes)";
+   "org.springframework.samples.petclinic.owner.PetValidator" -> "org.springframework.samples.petclinic.owner.Pet (classes)";
+   "org.springframework.samples.petclinic.owner.PetValidator" -> "org.springframework.samples.petclinic.owner.PetType (classes)";
+   "org.springframework.samples.petclinic.owner.Visit" -> "org.springframework.samples.petclinic.model.BaseEntity (classes)";
+   "org.springframework.samples.petclinic.owner.VisitController" -> "org.springframework.samples.petclinic.owner.Owner (classes)";
+   "org.springframework.samples.petclinic.owner.VisitController" -> "org.springframework.samples.petclinic.owner.OwnerRepository (classes)";
+   "org.springframework.samples.petclinic.owner.VisitController" -> "org.springframework.samples.petclinic.owner.Pet (classes)";
+   "org.springframework.samples.petclinic.owner.VisitController" -> "org.springframework.samples.petclinic.owner.Visit (classes)";
+   "org.springframework.samples.petclinic.vet.Specialty" -> "org.springframework.samples.petclinic.model.NamedEntity (classes)";
+   "org.springframework.samples.petclinic.vet.Vet"    -> "org.springframework.samples.petclinic.model.NamedEntity (classes)";
+   "org.springframework.samples.petclinic.vet.Vet"    -> "org.springframework.samples.petclinic.model.Person (classes)";
+   "org.springframework.samples.petclinic.vet.Vet"    -> "org.springframework.samples.petclinic.vet.Specialty (classes)";
+   "org.springframework.samples.petclinic.vet.VetController" -> "org.springframework.samples.petclinic.vet.Vet (classes)";
+   "org.springframework.samples.petclinic.vet.VetController" -> "org.springframework.samples.petclinic.vet.VetRepository (classes)";
+   "org.springframework.samples.petclinic.vet.VetController" -> "org.springframework.samples.petclinic.vet.Vets (classes)";
+   "org.springframework.samples.petclinic.vet.VetRepository" -> "org.springframework.samples.petclinic.vet.Vet (classes)";
+   "org.springframework.samples.petclinic.vet.Vets"   -> "org.springframework.samples.petclinic.vet.Vet (classes)";
+}

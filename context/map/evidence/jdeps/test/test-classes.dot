@@ -1,0 +1,20 @@
+digraph "test-classes" {
+    // Path: target\test-classes
+   "org.springframework.samples.petclinic.MySqlIntegrationTests" -> "org.springframework.samples.petclinic.vet.VetRepository (classes)";
+   "org.springframework.samples.petclinic.PetClinicConcurrencyTests" -> "org.springframework.samples.petclinic.owner.Owner (classes)";
+   "org.springframework.samples.petclinic.PetClinicConcurrencyTests" -> "org.springframework.samples.petclinic.owner.OwnerRepository (classes)";
+   "org.springframework.samples.petclinic.PetClinicConcurrencyTests" -> "org.springframework.samples.petclinic.owner.Pet (classes)";
+   "org.springframework.samples.petclinic.PetClinicIntegrationTests" -> "org.springframework.samples.petclinic.vet.VetRepository (classes)";
+   "org.springframework.samples.petclinic.PostgresIntegrationTests" -> "org.springframework.samples.petclinic.vet.VetRepository (classes)";
+   "org.springframework.samples.petclinic.service.ClinicServiceTests" -> "org.springframework.samples.petclinic.model.BaseEntity (classes)";
+   "org.springframework.samples.petclinic.service.ClinicServiceTests" -> "org.springframework.samples.petclinic.owner.Owner (classes)";
+   "org.springframework.samples.petclinic.service.ClinicServiceTests" -> "org.springframework.samples.petclinic.owner.OwnerRepository (classes)";
+   "org.springframework.samples.petclinic.service.ClinicServiceTests" -> "org.springframework.samples.petclinic.owner.Pet (classes)";
+   "org.springframework.samples.petclinic.service.ClinicServiceTests" -> "org.springframework.samples.petclinic.owner.PetType (classes)";
+   "org.springframework.samples.petclinic.service.ClinicServiceTests" -> "org.springframework.samples.petclinic.owner.PetTypeRepository (classes)";
+   "org.springframework.samples.petclinic.service.ClinicServiceTests" -> "org.springframework.samples.petclinic.owner.Visit (classes)";
+   "org.springframework.samples.petclinic.service.ClinicServiceTests" -> "org.springframework.samples.petclinic.vet.Specialty (classes)";
+   "org.springframework.samples.petclinic.service.ClinicServiceTests" -> "org.springframework.samples.petclinic.vet.Vet (classes)";
+   "org.springframework.samples.petclinic.service.ClinicServiceTests" -> "org.springframework.samples.petclinic.vet.VetRepository (classes)";
+   "org.springframework.samples.petclinic.service.EntityUtils" -> "org.springframework.samples.petclinic.model.BaseEntity (classes)";
+}

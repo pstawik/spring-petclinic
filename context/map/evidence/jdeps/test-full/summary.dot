@@ -1,0 +1,23 @@
+digraph "summary" {
+  "org.springframework.samples.petclinic"            -> "org.springframework.samples.petclinic (classes)";
+  "org.springframework.samples.petclinic"            -> "org.springframework.samples.petclinic (test-classes)";
+  "org.springframework.samples.petclinic"            -> "org.springframework.samples.petclinic.owner (classes)";
+  "org.springframework.samples.petclinic"            -> "org.springframework.samples.petclinic.vet (classes)";
+  "org.springframework.samples.petclinic.model"      -> "org.springframework.samples.petclinic.model (classes)";
+  "org.springframework.samples.petclinic.owner"      -> "org.springframework.samples.petclinic.owner (test-classes)";
+  "org.springframework.samples.petclinic.owner"      -> "org.springframework.samples.petclinic.owner (classes)";
+  "org.springframework.samples.petclinic.service"    -> "org.springframework.samples.petclinic.model (classes)";
+  "org.springframework.samples.petclinic.service"    -> "org.springframework.samples.petclinic.owner (classes)";
+  "org.springframework.samples.petclinic.service"    -> "org.springframework.samples.petclinic.service (test-classes)";
+  "org.springframework.samples.petclinic.service"    -> "org.springframework.samples.petclinic.vet (classes)";
+  "org.springframework.samples.petclinic.system"     -> "org.springframework.samples.petclinic.system (test-classes)";
+  "org.springframework.samples.petclinic.system"     -> "org.springframework.samples.petclinic.system (classes)";
+  "org.springframework.samples.petclinic.vet"        -> "org.springframework.samples.petclinic.vet (classes)";
+  "org.springframework.samples.petclinic"            -> "org.springframework.samples.petclinic.model (classes)";
+  "org.springframework.samples.petclinic"            -> "org.springframework.samples.petclinic.vet (classes)";
+  "org.springframework.samples.petclinic.model"      -> "org.springframework.samples.petclinic.model (classes)";
+  "org.springframework.samples.petclinic.owner"      -> "org.springframework.samples.petclinic.model (classes)";
+  "org.springframework.samples.petclinic.owner"      -> "org.springframework.samples.petclinic.owner (classes)";
+  "org.springframework.samples.petclinic.vet"        -> "org.springframework.samples.petclinic.model (classes)";
+  "org.springframework.samples.petclinic.vet"        -> "org.springframework.samples.petclinic.vet (classes)";
+}
