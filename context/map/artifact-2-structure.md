@@ -251,7 +251,3 @@ node coupling-metrics.mjs class-full/classes.dot --test test-full/test-classes.d
   --classes-dir ../../../../target/classes --strip-prefix org.springframework.samples.petclinic. > coupling-metrics.md
 node dot-to-mermaid.mjs package/classes.dot --extra system
 ```
-
-**Pozostałości do usunięcia:**
-- `context/map/jdeps/`: pierwsza wersja grafów, zastąpiona przez `evidence/jdeps/`,
-- `~/.jdks/_dl`: zip JDK.
