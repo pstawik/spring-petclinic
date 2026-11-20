@@ -4,6 +4,9 @@ Raport roboczy dla agenta.
 - **Źródło:** `jdeps 17.0.21.1` na `target/classes` i `target/test-classes`, z 2026-11-20. Dowody są w `context/map/evidence/jdeps/`.
 - **Ścieżki Java:** względne do `src/main/java/org/springframework/samples/petclinic/` (testy: `src/test/java/...`).
 - **Odwołania do historii zmian:** `artifact-1-territory.md` = **T1**, np. „T1 a)”.
+- **Stan repo:** `28c6411` (rodzic commita `b07b197`, który dodał ten plik). Kod produktu jest taki sam jak w `be1eb26`.
+- **Obszary:** pakiety i klasy z tego pliku przechodzą na wspólną listę według tabeli w `areas.md`.
+- **Uzupełnienia z 2026-11-20** (JaCoCo, uruchomiona aplikacja, historia U28) są zaznaczone jako *Weryfikacja*.
 
 Skróty plików z dowodami:
 - `pkg` = `package/classes.dot`,
@@ -175,6 +178,13 @@ Rodzaje testów dziś:
 | 7 | XML z `/vets` nie ma testu | brak krawędzi z testów do `Vets` | `@WebMvcTest` z `accept(APPLICATION_XML)` |
 | 8 | Testy MySQL znikają po cichu bez Dockera | `MySqlIntegrationTests:43` | proces: zmiana schematu wymaga przebiegu z Dockerem |
 
+*Weryfikacja: pokrycie JaCoCo.* `./mvnw -B -Dcheckstyle.skip test jacoco:report` (JDK 17.0.21.1, Docker dostępny): 81 testów, 0 błędów, 0 pominiętych, w tym MySQL i Postgres.
+- **Razem:** linie 313/333 (94,0%), gałęzie 100/122 (82,0%).
+- **Niepokryte gałęzie są w środku grafu:** `PetController` 28/38, `Owner` 20/28, `VisitController` 6/8, `OwnerController` 19/20, `PetTypeFormatter` 5/6.
+- **Niepokryte linie:** `PetClinicRuntimeHints` 0/9, `PetClinicApplication` 1/3, `CacheConfiguration` 2/3 (lambda customizera, patrz U36).
+- Pozostałe klasy mają 100% linii i gałęzi.
+- Pokrycie liniowe nie oznacza asercji. `Vets`, `WebConfiguration` i `CacheConfiguration` są pokryte, bo ładuje je kontekst Springa, ale nadal żaden test nie sprawdza ich zachowania. Lista niżej dotyczy właśnie testów zachowania.
+
 **Klasy bez testów.**
 - Pozorne: wszystkie kontrolery (`@WebMvcTest(X.class)` nie jest krawędzią) i `NamedEntity` (testowana przez podklasy).
 - Realne:
@@ -213,13 +223,13 @@ Pełna lista: `evidence/jdeps/unknowns.md` (U1–U36, ze ścieżką, rodzajem lu
 
 | Obszar | Unknowns | Najważniejsze |
 |--------|----------|---------------|
-| Runtime Springa | U1–U6, U10, U36 | **U36 (hipoteza):** na classpath nie ma `caffeine:jcache`, więc `JCacheManagerCustomizer` może się nie wykonywać. Weryfikacja: `GET /actuator/caches`. |
+| Runtime Springa | U1–U6, U10, U36 | **U36 (potwierdzone):** na classpath nie ma `caffeine:jcache`, więc `JCacheManagerCustomizer` się nie wykonuje. *Weryfikacja:* na uruchomionej aplikacji (H2) `/actuator/beans` pokazuje `CaffeineCacheManager` z `CaffeineCacheConfiguration`, a `/actuator/caches` pokazuje `vets` dopiero po pierwszym `GET /vets.html`. JaCoCo: lambda `cm.createCache(...)` i `setStatisticsEnabled(true)` nie wykonały się w żadnym teście. Cache `"vets"` nie ma statystyk ani limitu, a hinty serializacji z U29 są w tej konfiguracji zbędne. |
 | Spring Data | U7–U9 | Zapytanie z nazwy metody na `lastName`; `@Query` jako tekst; `findAll` i `findAll(Pageable)` w jednym cache bez `@CacheEvict` |
-| Szablony | U11–U17 | Nazwy widoków i `redirect:` jako napisy; `inputField.html` czyta `minVisitDate` ustawiany tylko przez `VisitController` (U15); tekst na sztywno w `pets/createOrUpdatePetForm.html` łamie zasadę i18n z `AGENTS.md` (U17) |
+| Szablony | U11–U17 | Nazwy widoków i `redirect:` jako napisy; `inputField.html` czyta `minVisitDate` ustawiany tylko przez `VisitController` (U15); tekst na sztywno łamie zasadę i18n z `AGENTS.md` (U17). *Weryfikacja:* etykiety są wpisane na sztywno w obu formularzach z `pets/`: zwierzęcia (`'Name'`, `'Birth Date'`, `'Type'`) i wizyty (`'Date'`, `'Description'`). |
 | Properties i profile | U18–U22 | `db/${database}/` wybiera skrypty; `sql.init.mode=always` w mysql i postgres (przyczyna `88e37c1`); snake_case z nazw pól |
 | SQL | U23–U26 | Długości kolumn ↔ `@Size`; napis `unique_owner_pet_name`; dane startowe (`types`, właściciel `id=1` w testach) |
-| Hints, refleksja, walidacja | U27–U32 | **U28:** hint `mysql-default-conf` wskazuje nieistniejący zasób; limit imienia zwierzęcia w `PetValidator`, a nie w `@Size` (U30) |
-| Frontend | U33–U35 | CSS z SCSS tylko przez `-P css`, a wynik jest commitowany; **U34:** `build.gradle` nie ma odpowiednika profilu `css` |
+| Hints, refleksja, walidacja | U27–U32 | **U28:** hint `mysql-default-conf` wskazuje nieistniejący zasób. *Weryfikacja:* `git log -S` pokazuje, że dodał go `c231682` (Dave Syer, 2023-07-07, „Tidy up native tests”) i od tamtej pory nikt go nie zmieniał. Limit imienia zwierzęcia w `PetValidator`, a nie w `@Size` (U30) |
+| Frontend | U33–U35 | CSS z SCSS tylko przez `-P css`, a wynik jest commitowany; **U34:** `build.gradle` nie ma odpowiednika profilu `css`. *Weryfikacja Maven ↔ Gradle:* wersje są zgodne (Boot 4.1.0, checkstyle 12.3.1, javaformat 0.0.47, nohttp 0.0.11, webjars). W `build.gradle` nie ma JaCoCo, celu `build-info`, `git-commit-id` ani zależności `spring-boot-starter-{thymeleaf,validation,actuator,cache}-test` i `restclient` (test). Actuator jest w Mavenie zależnością compile, a w Gradle `runtimeOnly`. |
 
 ## 10. Pliki, skrypty i komendy
 

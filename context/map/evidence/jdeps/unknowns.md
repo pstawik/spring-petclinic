@@ -91,3 +91,12 @@ Rodzaje luk:
 | Wizyty | U10, U12, U15, U17, U31 | Zapis przez kaskadę, przekierowanie do właściciela i fragment daty. `753d35c` zmienił jednocześnie encję, kontroler, 8 plików `messages_*` i fragment. |
 | Weterynarze | U2, U9, U29, U32, U36 | Cache `"vets"` (napis + serializacja + hint) i XML. W grafie `vet` wygląda na najprostszy pakiet, a ma najwięcej powiązań runtime. |
 | Skrypty `db/` | U18, U19, U23–U26 | Jedyna regresja w oknie (`88e37c1`) pochodzi z U19. Graf nie widzi żadnej z tych zależności. |
+
+## Weryfikacja (2026-11-20, po powstaniu listy)
+
+| # | Status | Jak sprawdzone |
+|---|--------|----------------|
+| U17 | **Potwierdzone, szerzej niż opisano.** Etykiety na sztywno są w `templates/pets/createOrUpdatePetForm.html` (`'Name'`, `'Birth Date'`, `'Type'`) i w `templates/pets/createOrUpdateVisitForm.html` (`'Date'`, `'Description'`). | `grep th:replace` w szablonach. |
+| U28 | **Potwierdzone.** Zasobu nie ma. Wzorzec dodał `c231682` (2023-07-07, „Tidy up native tests”) i od tamtej pory nikt go nie zmieniał. | `find`, `git log -S mysql-default-conf` |
+| U34 | **Potwierdzone i rozszerzone.** W `build.gradle` nie ma też JaCoCo, `build-info`, `git-commit-id` ani czterech zależności `*-test`. | porównanie `pom.xml` i `build.gradle` |
+| U36 | **Potwierdzone.** Menedżer to `CaffeineCacheManager` (`CaffeineCacheConfiguration`), a nie JCache. Cache `vets` powstaje dynamicznie przy pierwszym żądaniu. | `/actuator/beans`, `/actuator/caches` na uruchomionej aplikacji (H2); JaCoCo: linie 37 i 50 w `CacheConfiguration` niewykonane w 81 testach |

@@ -1,6 +1,8 @@
 # Artefakt 1: Terytorium (historia zmian i aktywne obszary)
 
 Raport roboczy. Źródło: `git log` z ostatnich 12 miesięcy, od 2025-11-20 do 2026-11-20.
+- **Stan repo:** `527d61b` (rodzic commita `28c6411`, który dodał ten plik).
+- **Obszary:** nazwy z tego pliku przechodzą na wspólną listę według tabeli w `areas.md` (A1–A8, P1, X1–X4).
 
 ## Zakres i metoda
 
@@ -8,7 +10,8 @@ Raport roboczy. Źródło: `git log` z ostatnich 12 miesięcy, od 2025-11-20 do 
 - **Jednostka:** liczba commitów, które dotknęły obszaru lub pliku. Nie liczba linii.
 - **Pominięte commity:**
   - merge `ab1d536` (jego treść jest w `430b5ff` i `f5b8a89`),
-  - mechaniczne przeglądy: `44d5f21` (usunięcie adnotacji jspecify z 16 plików) i `37c7f98` (zmiana nazw metod testowych w 16 plikach plus podbicie zależności).
+  - mechaniczne przeglądy: `44d5f21` (usunięcie adnotacji jspecify z 16 plików) i `37c7f98` (zmiana nazw metod testowych w 16 plikach plus podbicie zależności),
+  - `3e1ce23` („Polish”) nie jest wykluczony jawnie, ale dotyka tylko `pom.xml`, więc odpada razem z plikami buildu. T3 wyklucza go jawnie i wynik jest ten sam.
 - **Boty:** w oknie nie ma commitów botów (dependabot, renovate itp.). Podbicia wersji robili ludzie, a te commity w większości dotykają tylko plików build, odfiltrowanych niżej. Duże commity funkcjonalne zostały, na przykład `e0db9b1` (7 plików, +266 linii).
 - **Odfiltrowany szum:**
   - pliki buildu i wrappery: `pom.xml`, `build.gradle`, `gradle/`, `.mvn/`, `gradlew*`, `mvnw*`,
@@ -35,17 +38,19 @@ Pakiet `owner/` łączy trzy funkcje: właścicieli, zwierzęta i wizyty. Na poz
 | # | Obszar | Commity (AI) | Funkcja produktu |
 |---|--------|--------------|------------------|
 | 1 | Właściciele: `owner/Owner*`, `OwnerController*`, `templates/owners/` | 8 (0) | Wyszukiwanie właścicieli z paginacją, rejestracja i edycja ich danych. |
-| 2 | Zwierzęta: `owner/Pet*`, `PetValidator*`, `PetType*` | 7 (0) | Dodawanie i edycja zwierząt właściciela z walidacją, np. unikalne imię u jednego właściciela. |
+| 2 | Zwierzęta: `owner/Pet*`, `PetValidator*`, `PetType*`, `templates/pets/createOrUpdatePetForm.html` | 7 (0) | Dodawanie i edycja zwierząt właściciela z walidacją. Unikalność imienia u jednego właściciela pilnuje `PetController` i indeks w bazie, a nie `PetValidator` (patrz T2 §1.5). |
 | 3 | Testy integracyjne w korzeniu: `PetClinicIntegrationTests`, `PetClinicConcurrencyTests`, `MySqlIntegrationTests`, `MysqlTestApplication`, `PostgresIntegrationTests` | 6 (0) | Uruchamianie całej aplikacji na H2, MySQL i PostgreSQL. Zmiany szły głównie za upgrade'ami Bootu i obrazów baz. |
 | 4 | Skrypty baz: `src/main/resources/db/{h2,mysql,postgres}/` | 4 (0) | Schemat i dane startowe dla trzech baz. |
-| 5 | Weterynarze: `vet/` | 3 (0) | Lista weterynarzy ze specjalizacjami, z paginacją i API JSON/XML. |
-| 6 | Wizyty: `owner/Visit*` | 3 (0) | Rejestrowanie wizyt zwierzęcia z walidacją daty i opisu. |
+| 5 | Weterynarze: `vet/`, `templates/vets/` | 3 (0) | Lista weterynarzy ze specjalizacjami, z paginacją i API JSON/XML. |
+| 6 | Wizyty: `owner/Visit*`, `templates/pets/createOrUpdateVisitForm.html` | 3 (0) | Rejestrowanie wizyt zwierzęcia z walidacją daty i opisu. |
 | 7 | Tłumaczenia: `src/main/resources/messages/` | 3 (0) | Teksty interfejsu w 10 językach, ostatnio dodane hindi i japoński. |
 | 8 | System: `system/`, `templates/fragments/` | 3 (0) | Strona powitalna, obsługa błędów, cache, wspólne fragmenty formularzy i test spójności i18n. |
 | 9 | Model bazowy: `model/` | 3 (0) | Wspólne encje `BaseEntity`, `NamedEntity` i `Person` z walidacją imienia i nazwiska. |
 | 10 | Korzeń aplikacji: `PetClinicApplication`, `PetClinicRuntimeHints` | 2 (1) | Start aplikacji i podpowiedzi dla obrazu natywnego (GraalVM/AOT). Remis z testami serwisowymi `service/` (2). |
 
 *Korekta:* `PetClinicConcurrencyTests` (`e0db9b1`) był wcześniej błędnie liczony do korzenia aplikacji. To test integracyjny, więc tabele a), c) i d) są już poprawione.
+
+*Uzupełnienie ścieżek:* szablony `templates/pets/` i `templates/vets/` dopisano do obszarów 2, 5 i 6. W oknie nie miały commitów (jedyny commit w `templates/` to `753d35c` w `fragments/`), więc liczby się nie zmieniają.
 
 ## b) TOP 10 plików
 
@@ -123,7 +128,7 @@ Filtry są te same co wyżej. Liczby to commity, które dotknęły obszaru.
    - Utwardzenie danych wejściowych: limity długości pól właściciela, zwierzęcia i wizyty (`3c7ab98`, `676db04`, `f3c7483`), normalizacja wyszukiwania (`bb37aad`), granice paginacji i przepełnienia liczb (`500158f`, `0d064b0`, `b33136f`).
    - Nowe języki: hindi i japoński.
    - Owners, pets, vet i i18n osiągają tu maksimum.
-5. **2026Q4: cisza.** Do 20.11 nie ma zmian w kodzie produktu.
+5. **2026Q4: cisza.** Do 20.11 nie ma zmian w kodzie produktu. `git log` pokazuje tylko przyjęte zmiany, więc nie mówi, czy w tym czasie były zgłoszenia, których nie przyjęto.
 
 **Wniosek:** w ciągu roku nacisk przesunął się z platformy (migracje frameworka, robione przez maintainerów) na funkcje domenowe w `owner/`, czyli walidację i odporność formularzy, wnoszone przez społeczność. W obszarach infrastrukturalnych związek z upgrade'ami jest tylko częściowy:
 - testy integracyjne: 3 z 6 commitów to upgrade'y (`37d5315` Boot 4.0, `edf4db2` obrazy baz, `9a5d50c` Boot 4.1),
@@ -243,7 +248,7 @@ Pary z `service` mają 100%, ale to artefakt jednego commitu.
 | Właściciele + Zwierzęta + Wizyty | 1 | `c7ee170`: ta sama linijka `setDisallowedFields("id", "*.id")` w trzech kontrolerach. |
 | Właściciele + Zwierzęta + `model` | 1 | `fd4361b`: nazwy kolumn snake_case w encjach. |
 | Wizyty + Tłumaczenia + `system` | 1 | `753d35c`: walidacja daty wizyty, nowy klucz komunikatu w `messages_*` i komunikat błędu we fragmencie `inputField.html`. |
-| Zwierzęta + `db` + Testy integracyjne (+ `service`) | 1 | `e0db9b1`: unikalne imię zwierzęcia, czyli walidator, indeks w trzech schematach i testy współbieżności. |
+| Zwierzęta + `db` + Testy integracyjne (+ `service`) | 1 | `e0db9b1`: unikalne imię zwierzęcia, czyli sprawdzenie w `PetController`, indeks w trzech schematach i testy współbieżności. |
 
 ### Sprzężenia wewnątrz katalogów
 
@@ -260,7 +265,7 @@ Te sprzężenia są ukryte przez grupowanie obszarów.
    - Z `vet/` łączy ich tylko skopiowana logika paginacji: wspólny `500158f` oraz para osobnych, identycznych commitów `0d064b0`/`b33136f`. W oknie wszystkie trzy poprawki paginacji zrobiono w obu kontrolerach. To duplikacja, a nie zależność domenowa.
 2. **Zwierzęta:** obszar o największej liczbie partnerów: właściciele, wizyty, `model`, `system`, `db`, testy integracyjne i serwisowe.
    - Tylko z właścicielami sprzężenie się powtarza. Reszta to pojedyncze commity, głównie feature `e0db9b1`.
-   - Obserwacja z jednego commitu (`e0db9b1`): reguła domenowa o zwierzęciu (unikalność) wymagała zmian w walidatorze, w trzech schematach `db/` i w testach integracyjnych naraz. To najszerszy ślad pojedynczego feature'u w oknie.
+   - Obserwacja z jednego commitu (`e0db9b1`): reguła domenowa o zwierzęciu (unikalność) wymagała zmian w `PetController`, w trzech schematach `db/` i w testach integracyjnych naraz. `PetValidator` i `Pet.java` nie były zmieniane (`git show --stat e0db9b1`). To najszerszy ślad pojedynczego feature'u w oknie.
 3. **Testy integracyjne:** w zasadzie bez sprzężeń funkcjonalnych.
    - Zmieniają się samodzielnie (`edf4db2`, `e316074`, `a4fcf04`) albo razem z upgrade'ami (`9a5d50c`, `37d5315`).
    - Wyjątkiem jest `e0db9b1` z nowym testem współbieżności.
@@ -281,6 +286,8 @@ Dla każdego pliku policzyłem, z iloma *innymi* obszarami produktu dzielił com
 | `owner/OwnerController.java` | 5 | 6 | 3 | Ręcznie |
 | `README.md` | 9 | 5 | 2 | Ręcznie (dokumentacja) |
 | `src/main/resources/application.properties` | 3 | 4 | 4 | Ręcznie |
+
+Liczby commitów w tej tabeli są z innej bazy niż w b) (47 commitów z buildem i commitami masowymi zamiast 28 po filtrach). Dlatego `OwnerController` ma tu 5, a w b) 4, a `PetController` tu 4, a w b) 2.
 
 **`pom.xml` to jedyny prawdziwy węzeł.**
 - Ma 10 commitów, najwięcej ze wszystkich plików w oknie, i łączy się z 9 z 11 obszarów. 7 z tych 9 połączeń pochodzi jednak z dwóch szerokich commitów, które dotykają `pom.xml`: `37d5315` (Boot 4.0) i `37c7f98` (zależności i nazwy testów). Bez nich zostają 2 obszary (korzeń aplikacji i testy integracyjne, oba z `9a5d50c`).
