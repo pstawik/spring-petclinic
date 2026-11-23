@@ -97,10 +97,16 @@ Połowa z 16 pojęć nie ma odpowiednika w kodzie (termin, rasa, masa ciała, st
 
 ## 6. Decyzje, które należą do mnie
 
-Artefakty zapisują decyzje, ale tylko część z nich wskazuje autora. Poniżej opieram się wyłącznie na tym, co da się w nich wskazać.
+Artefakty zapisują decyzje, ale tylko część z nich wskazuje autora. Poniżej przy każdej decyzji podaję, skąd wiadomo, kto ją podjął.
 
-- **Mapa:** AI zestawiło sygnały z gita, jdeps i JaCoCo. Ja przesądziłem zakres źródeł („tylko historia gita”, bez PR-ów i issue) i to, że tożsamości `king-407` i „shivam tiwari” zostają rozdzielone mimo poszlak (MAP §7).
-- **Plan L4:** plan-review zaproponował dwie opcje dla fazy „wszystkie trafienia”. Wybrałem Fix A, czyli wydzielenie jej jako osobnej zmiany, bo dosłownie spełnia regułę „zmiana zachowania to osobna zmiana” (P4 plan-review F1).
-- **L5:** zatrzymałem wybór #1 w D2 i D3 mimo konfrontacji. Unikalność imienia jest bardziej rozsmarowana, ale mniej rdzeniowa, lepiej pilnowana i odrzucana przez domenę (D2 „Konfrontacja” §1).
-- **Weryfikacja AI:** wymusiłem grepy dla pojęć oznaczonych jako „BRAK w kodzie”, cytaty decyzji dla rozjazdów typu „napraw dokument” i własnym grepem złapałem `VetRepository` pominięty w kryterium ACL (D1 „Weryfikacja”, D3 K-1).
+- **Mapa:** AI zestawiło sygnały z gita, jdeps i JaCoCo. Ja ustaliłem zakres źródeł („tylko historia gita”, bez PR-ów i issue) i zdecydowałem, że tożsamości `king-407` i „shivam tiwari” zostają rozdzielone mimo poszlak (MAP §7; autorstwo wg notatek z sesji mapy).
+- **Plan L4:** plan-review zaproponował dwie opcje dla fazy „wszystkie trafienia” i **zarekomendował** Fix A, czyli wydzielenie jej jako osobnej zmiany. W triage przyjęto Fix A (P4 plan-review F1). Artefakt nie zapisuje, kto zatwierdził decyzję. Moja decyzja: implementacja planu nie jest wymagana w tym ćwiczeniu.
+- **L5, wybór #1:** to, że #1 w D2 i D3 się nie zmienia, było moim **warunkiem z góry** („nie zmieniaj wyboru #1”), a nie wnioskiem z analizy. Uzasadnienie dostarczyła potem analiza AI: unikalność imienia jest bardziej rozsmarowana, ale mniej rdzeniowa, lepiej pilnowana i odrzucana przez domenę (D2 „Konfrontacja” §1).
+- **Weryfikacja AI:** to ja zleciłem przeglądy wyników AI:
+  - grep dla trzech pojęć oznaczonych jako „BRAK w kodzie”,
+  - kontrolę rozjazdów typu „napraw dokument”,
+  - porównanie destylacji z researchem L3,
+  - konfrontację INV-06 z L3/L4.
+
+  Własnym grepem wychwyciłem też `VetRepository`, pominięty w kryterium ACL. Wyniki zapisało AI: korekta K-01 historii reguły (od `521d01d`, a nie `e0db9b1`) w D1 „Weryfikacja”, korekta K-1 w D3.
 - **Otwarte, czeka na mnie lub maintainera:** Q-01 — czy imię ma blokować zapis, czy tylko ostrzegać. Od tej decyzji zależy, czy plan L4 i fazy F2–F4 ACL w ogóle mają sens (D1, D3 A-01).
