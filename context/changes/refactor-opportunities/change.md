@@ -1,7 +1,7 @@
 ---
 change_id: refactor-opportunities
 title: Ranking refactor opportunities z długu opisanego w pet-duplicate-name-analysis
-status: preparing
+status: plan_reviewed
 created: 2026-11-23
 updated: 2026-11-23
 archived_at: null
