@@ -125,7 +125,7 @@ sequenceDiagram
     R->>H: merge + flush (INSERT / UPDATE)
     alt naruszenie UNIQUE (P2)
       H-->>R: ConstraintViolationException
-      R-->>C: DataIntegrityViolationException(msg + "; constraint [x]")
+      R-->>C: DataIntegrityViolationException(msg + "#59; constraint [x]")
       alt msg zawiera "unique_owner_pet_name" (H2 [E], Postgres [I])
         C-->>B: 200, formularz z błędem "duplicate"
       else MySQL: klucz "owner_id" [I]
