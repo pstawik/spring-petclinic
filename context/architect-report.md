@@ -100,7 +100,7 @@ Połowa z 16 pojęć nie ma odpowiednika w kodzie (termin, rasa, masa ciała, st
 Artefakty zapisują decyzje, ale tylko część z nich wskazuje autora. Poniżej przy każdej decyzji podaję, skąd wiadomo, kto ją podjął.
 
 - **Mapa:** AI zestawiło sygnały z gita, jdeps i JaCoCo. Ja ustaliłem zakres źródeł („tylko historia gita”, bez PR-ów i issue) i zdecydowałem, że tożsamości `king-407` i „shivam tiwari” zostają rozdzielone mimo poszlak (MAP §7; autorstwo wg notatek z sesji mapy).
-- **Plan L4:** plan-review zaproponował dwie opcje dla fazy „wszystkie trafienia” i **zarekomendował** Fix A, czyli wydzielenie jej jako osobnej zmiany. W triage przyjęto Fix A (P4 plan-review F1). Artefakt nie zapisuje, kto zatwierdził decyzję. Moja decyzja: implementacja planu nie jest wymagana w tym ćwiczeniu.
+- **Plan L4:** plan-review zaproponował dwie opcje dla fazy „wszystkie trafienia” i **zarekomendował** Fix A, czyli wydzielenie jej jako osobnej zmiany. W triage przyjąłem Fix A (P4 plan-review F1). Również moja decyzja: implementacja planu nie jest wymagana w tym ćwiczeniu.
 - **L5, wybór #1:** to, że #1 w D2 i D3 się nie zmienia, było moim **warunkiem z góry** („nie zmieniaj wyboru #1”), a nie wnioskiem z analizy. Uzasadnienie dostarczyła potem analiza AI: unikalność imienia jest bardziej rozsmarowana, ale mniej rdzeniowa, lepiej pilnowana i odrzucana przez domenę (D2 „Konfrontacja” §1).
 - **Weryfikacja AI:** to ja zleciłem przeglądy wyników AI:
   - grep dla trzech pojęć oznaczonych jako „BRAK w kodzie”,
