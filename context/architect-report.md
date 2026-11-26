@@ -16,7 +16,6 @@ Raport powstał wyłącznie z artefaktów w `context/`. Skróty: **MAP** = `cont
 | L3 — R3 | spring-petclinic | `d508ed7` |
 | L4 — R4, P4 | spring-petclinic | `939a56d` |
 | L5 — D1, D2, D3, `glossary.md` | spring-petclinic | 2026-11-23; kod produktu bez zmian od `500158f` (R3, R4) |
-| L5 — `event-storming-board.json` | **BRAK artefaktu** | — |
 
 **Jeden projekt we wszystkich lekcjach:** Spring PetClinic, przykładowa aplikacja Spring Boot 4.1 (Java 17, Spring Data JPA, Thymeleaf), działająca na H2, MySQL i PostgreSQL (MAP §1).
 
